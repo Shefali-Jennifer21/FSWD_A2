@@ -4,4 +4,3 @@ from database import update_student_data, get_student_by_email_password, student
 
 
 class Admin:
-    pass
