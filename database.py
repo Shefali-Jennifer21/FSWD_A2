@@ -26,10 +26,19 @@ def update_student_data(updated_student):
     save_students(students)
 
 def get_student_by_email_password(email, password):
+    email = email.lower() 
     for student in load_students():
-        if student.email == email and student.password == password:
+        if student.email.lower() == email and student.password == password: 
             return student
     return None
+
+def student_exists(email):
+
+    for student in load_students():
+        email = email.lower() 
+        if student.email.lower() == email.strip():   
+            return True
+    return False
 
 def student_exists(email):
     for student in load_students():
