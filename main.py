@@ -4,11 +4,15 @@ from database import update_student_data, get_student_by_email_password, student
 import re
 import random
 
+PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{4,}[0-9]{3,}$" 
+
 def register_student():
     print("Student Sign Up")
     while True:
         email = input("Email: ")
         password = input("Password: ")
+          
+        
         temp_student = Student("", email, password)
 
         if not temp_student.is_valid_email() or not temp_student.is_valid_password():
@@ -34,6 +38,7 @@ def login_student():
         if not temp_student.is_valid_email() or not temp_student.is_valid_password():
             print("Incorrect email or password format")
         else:
+            email = email.lower() 
             student = get_student_by_email_password(email, password)
             if student:
                 print("Student Course Menu")
@@ -42,6 +47,8 @@ def login_student():
                 return
             else:
                 print("Student does not exist")
+                student_menu() 
+                
 
 def student_course_menu(student):
     while True:
@@ -65,13 +72,16 @@ def student_course_menu(student):
             while True:
                 new_password = input("New Password: ")
                 confirm_password = input("Confirm Password: ")
-                if new_password != confirm_password:
+                if new_password != confirm_password: 
                     print("Password does not match - try again")
-                else:
+                elif re.fullmatch(PASSWORD_REGEX, new_password): 
                     student.password = new_password  
                     update_student_data(student)  
                     print("Password updated successfully.")
                     break
+                else: 
+                    print("Incorrect password format.")
+                    
         else:
             print("Invalid option. Please try again.")
 
