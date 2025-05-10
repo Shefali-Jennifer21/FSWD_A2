@@ -2,7 +2,7 @@ import re
 import random
 from subject import Subject
 
-EMAIL_REGEX = r"^[a-zA-Z0-9._-]+@[a-z]+\.[a-z]+$"
+EMAIL_REGEX = r"^[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+$"
 PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{4,}[0-9]{3,}$"
 
 class Student:
