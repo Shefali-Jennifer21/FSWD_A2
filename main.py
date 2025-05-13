@@ -1,6 +1,7 @@
 from student import Student
 from subject import Subject  
 from database import update_student_data, get_student_by_email_password, student_exists
+from admin import Admin
 import re
 import random
 
@@ -104,6 +105,27 @@ def student_menu():
             register_student()
         else:
             print("Invalid student option. Please try again.")
+
+def admin_menu():
+    while True:
+        print("\n--- Admin Menu ---")
+        print("Admin System (c/g/p/r/s/x)")
+        choice = input("Choose an option: ").lower()
+        if choice == 'x':
+            break
+        elif choice == 'c':
+            Admin.clear_database()
+        elif choice == 'g':
+            Admin.group_students_by_grade()
+        elif choice == 'p':
+            Admin.partition_students_pass_fail()
+        elif choice == 'r':
+            sid = input("Enter Student ID to remove: ")
+            Admin.remove_student_by_id(sid)
+        elif choice == 's':
+            Admin.show_all_students()
+        else:
+            print("Invalid option. Please try again.")
 
 def main():
     while True:
