@@ -2,21 +2,21 @@ import re
 import random
 from subject import Subject
 
-EMAIL_REGEX = r"^[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+$"
-PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{5,}[0-9]{3,}$"
+EMAIL_REGEX = r"^[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+@university\.com$"
+PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{5,}[0-9]{3,}$" 
 
 class Student:
     MAX_SUBJECTS = 4
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password): 
         self.id = f"{random.randint(1, 999999):06}"  
         self.name = name
-        self.email = email
+        self.email = email.lower()
         self.password = password
         self.subjects = []
 
     def is_valid_email(self):
-        return re.fullmatch(EMAIL_REGEX, self.email)
+        return re.fullmatch(EMAIL_REGEX, self.email, re.IGNORECASE)
 
     def is_valid_password(self):
         return re.fullmatch(PASSWORD_REGEX, self.password)
