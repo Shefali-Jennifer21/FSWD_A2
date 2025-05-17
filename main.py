@@ -5,7 +5,7 @@ from admin import Admin
 import re
 import random
 
-PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{4,}[0-9]{3,}$" 
+PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{5,}[0-9]{3,}$"
 
 def register_student():
     print("Student Sign Up")
@@ -48,7 +48,7 @@ def login_student():
                 return
             else:
                 print("Student does not exist")
-                student_menu() 
+                return 
                 
 
 def student_course_menu(student):
@@ -64,8 +64,8 @@ def student_course_menu(student):
                 print("Students are allowed to enrol in 4 subjects only.")
         elif choice == 'r':
             code = input("Remove Subject by ID: ")
-            update_student_data(student)
             student.remove_subject(code)
+            update_student_data(student)
         elif choice == 's':
             student.show_enrolled_subjects()
         elif choice == 'c':
@@ -85,14 +85,6 @@ def student_course_menu(student):
                     
         else:
             print("Invalid option. Please try again.")
-
-def admin_menu():
-    while True:
-        choice = input("Admin System (c/g/p/r/s/x) : ").lower()
-        if choice == 'x':
-            break
-        else:
-            print("Admin functionality placeholder.")
 
 def student_menu():
     while True:
