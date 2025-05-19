@@ -3,7 +3,7 @@ import random
 from subject import Subject
 
 EMAIL_REGEX = r"^[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+@university\.com$"
-PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{5,}[0-9]{3,}$" 
+PASSWORD_REGEX = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$&!%*])[A-Za-z0-9@#$&!%*]{8,}$"
 
 class Student:
     MAX_SUBJECTS = 4
@@ -18,8 +18,32 @@ class Student:
     def is_valid_email(self):
         return re.fullmatch(EMAIL_REGEX, self.email, re.IGNORECASE)
 
-    def is_valid_password(self):
-        return re.fullmatch(PASSWORD_REGEX, self.password)
+    def validate_password(self):
+        errors = []
+        password = self.password
+
+        if len(password) < 8 or len(password) > 20:
+            errors.append("Password must be 8–20 characters long.")
+
+        if not re.search(r"[A-Z]", password):
+            errors.append("Password must include at least one uppercase letter.")
+
+        if not re.search(r"[a-z]", password):
+            errors.append("Password must include at least one lowercase letter.")
+
+        if len(re.findall(r"[0-9]", password)) < 3:
+            errors.append("Password must include at least three digits.")
+    
+        if not re.search(r"[@#$&!%*]", password):
+            errors.append("Password must include at least one special character (@ # $ & ! % *).")
+        
+        if len(re.findall(r"[a-zA-Z]", password)) < 6:
+            errors.append("Password must contain at least six (6) letters.")
+
+        if not re.fullmatch(r"[A-Za-z0-9@#$&!%*]+", password):
+            errors.append("Password contains invalid characters. Only letters, numbers, and @#$&!%* are allowed.")
+
+        return errors
 
     def enrol_subject(self):
         if len(self.subjects) >= self.MAX_SUBJECTS:
@@ -71,3 +95,4 @@ class Student:
         student.id = data.get("id", f"{random.randint(1, 999999):06}")  
         student.subjects = [Subject.from_dict(subj) for subj in data.get("subjects", [])]
         return student
+
