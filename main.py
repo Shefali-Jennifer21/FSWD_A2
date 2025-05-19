@@ -5,29 +5,38 @@ from admin import Admin
 import re
 import random
 
-PASSWORD_REGEX = r"^[A-Z][a-zA-Z]{5,}[0-9]{3,}$"
+PASSWORD_REGEX = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$&!%*])[A-Za-z0-9@#$&!%*]{8,}$"
 
 def register_student():
     print("Student Sign Up")
     while True:
         email = input("Email: ")
         password = input("Password: ")
-          
         
         temp_student = Student("", email, password)
 
-        if not temp_student.is_valid_email() or not temp_student.is_valid_password():
-            print("Incorrect email or password format")
-        elif student_exists(email):
+        if not temp_student.is_valid_email():
+            print("Invalid email format. Must be firstname.lastname@university.com")
+            continue
+
+        password_errors = temp_student.validate_password()
+        if password_errors:
+            print("Invalid password format:")
+            for err in password_errors:
+                print(f"- {err}")
+            continue
+
+        if student_exists(email):
             print(f"Student {email.split('@')[0].replace('.', ' ').title()} already exists")
             return
-        else:
-            print("email and password formats acceptable")
-            name = input("Name: ")
-            student = Student(name, email, password)
-            update_student_data(student)  
-            print(f"Enrolling Student {name}")
-            return
+
+        print("Email and password formats are acceptable.")
+        name = input("Name: ")
+        student = Student(name, email, password)
+        update_student_data(student)  
+        print(f"Enrolling Student {name}")
+        return
+
 
 def login_student():
     print("Student Sign In")
@@ -36,21 +45,26 @@ def login_student():
         password = input("Password: ")
         temp_student = Student("", email, password)
 
-        if not temp_student.is_valid_email() or not temp_student.is_valid_password():
-            print("Incorrect email or password format")
-        else:
-            email = email.lower() 
+        valid_email = temp_student.is_valid_email()
+        valid_password = temp_student.is_valid_password()
+
+        if not valid_email:
+            print("Invalid email format. Must be firstname.lastname@university.com")
+        if not valid_password:
+            print("Invalid password format.")
+
+        if valid_email and valid_password:
+            email = email.lower()
             student = get_student_by_email_password(email, password)
             if student:
                 print("Student Course Menu")
                 student_course_menu(student)
-                update_student_data(student) 
+                update_student_data(student)
                 return
             else:
                 print("Student does not exist")
-                return 
-                
-
+                return
+            
 def student_course_menu(student):
     while True:
         choice = input("Student Course Menu (c/e/r/s/x): ").lower()
@@ -70,21 +84,26 @@ def student_course_menu(student):
             student.show_enrolled_subjects()
         elif choice == 'c':
             print("Updating Password")
-            while True:
-                new_password = input("New Password: ")
-                confirm_password = input("Confirm Password: ")
-                if new_password != confirm_password: 
-                    print("Password does not match - try again")
-                elif re.fullmatch(PASSWORD_REGEX, new_password): 
-                    student.password = new_password  
-                    update_student_data(student)  
-                    print("Password updated successfully.")
-                    break
-                else: 
-                    print("Incorrect password format.")
-                    
-        else:
-            print("Invalid option. Please try again.")
+        while True:
+            new_password = input("New Password: ")
+            confirm_password = input("Confirm Password: ")
+
+            if new_password != confirm_password:
+                print("Passwords do not match - try again")
+                continue
+
+            temp_student = Student(student.name, student.email, new_password)
+            password_errors = temp_student.validate_password()
+
+            if password_errors:
+                print("Invalid password format:")
+                for err in password_errors:
+                    print(f"- {err}")
+            else:
+                student.password = new_password
+                update_student_data(student)
+                print("Password updated successfully.")
+                break
 
 def student_menu():
     while True:
@@ -134,3 +153,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
