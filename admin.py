@@ -11,7 +11,7 @@ class Admin:
             return
         print("\n--- All Students ---")
         for s in students:
-            print(s)
+            print(f"  {s.name} : : {s.id} -->  Email: {s.email}")
 
     @staticmethod
     def clear_database():
@@ -33,49 +33,49 @@ class Admin:
         save_students(new_students)
 
     @staticmethod
+ 
     def group_students_by_grade():
         students = load_students()
         grade_groups = {}
 
         for student in students:
             for subject in student.subjects:
-                grade_groups.setdefault(subject.grade, []).append(student)
+                grade_groups.setdefault(subject.grade, []).append((student, subject))
 
         if not grade_groups:
             print("No subject data found for grouping.")
             return
 
         print("\n--- Grouped by Grade ---")
-        seen_ids = set()
-        for grade, group in grade_groups.items():
-            print(f"Grade {grade}:")
-            for student in group:
-                if student.id not in seen_ids:
-                    print(f"  {student}")
-                    seen_ids.add(student.id)
+        for grade, entries in grade_groups.items():
+            print(f"\nGRADE: {grade}")
+            for student, subject in entries:
+                print(f"  {student.name} : : {student.id} -->  Subject Code: {subject.code} - MARK: {subject.mark:.2f}")
+
 
     @staticmethod
     def partition_students_pass_fail():
         students = load_students()
-        passed = [
-            s for s in students
-            if s.calculate_average() >= 50 and len(s.subjects) == Student.MAX_SUBJECTS
-        ]
-        failed = [
-            s for s in students
-            if s.calculate_average() < 50 or len(s.subjects) < Student.MAX_SUBJECTS
-        ]
 
         print("\n--- Passed Students ---")
-        if passed:
-            for s in passed:
-                print(s)
-        else:
-            print("No passed students.")
+        
 
+        any_passed = False
+        for s in students:
+            for subject in s.subjects:
+                if subject.grade != "F":
+                    print(f"{s.name} : : {s.id} --> Subject Code: {subject.code} - GRADE: {subject.grade} - MARK: {subject.mark:.2f}")
+                    any_passed = True
+        if not any_passed:
+            print("No passed students.")
+        
+        
         print("\n--- Failed Students ---")
-        if failed:
-            for s in failed:
-                print(s)
-        else:
-            print("No failed students.")
+        any_failed = False
+        for s in students:
+            for subject in s.subjects:
+                if subject.grade == "F":
+                    print(f"{s.name} : : {s.id} --> Subject Code: {subject.code} - GRADE: F - MARK: {subject.mark:.2f}")
+                    any_failed = True
+        if not any_failed:
+            print("No failed subjects.")
