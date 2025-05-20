@@ -1,8 +1,8 @@
 
 import tkinter as tk
 from tkinter import messagebox
-import database # get_student_by_email_password
-from student import EMAIL_REGEX, Student # is_valid_email
+import database
+from student import EMAIL_REGEX, Student
 
 class LoginWindow:
     def __init__(self, root, login_success_callback_func):
