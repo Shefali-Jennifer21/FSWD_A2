@@ -18,13 +18,13 @@ Student email addresses must follow the structure of a valid university domain f
 
 # How to run the project 
 
-1.Ensure Python 3 is Installed
+**1.Ensure Python 3 is Installed**
 Make sure that Python 3.x is installed on your system. 
 
-2.Download or Clone the Repository
+**2.Download or Clone the Repository**
 Obtain the project files by downloading the ZIP archive from the repository.
 
-3.Verify Required Files Are Present
+**3.Verify Required Files Are Present**
 Ensure the following essential files are in the project folder:
 
 main.py
@@ -39,10 +39,10 @@ database.py
 
 students.data (optional, will be created if not found)
 
-4.Run the Application
+**4.Run the Application**
 Launch the system by executing the main Python file from the terminal: python main.py
 
-5. Interact with the Application
+**5. Interact with the Application**
 Upon running, the program will prompt you to select between Admin and Student modes.
 
 Choosing Admin will provide access to database management tools.
