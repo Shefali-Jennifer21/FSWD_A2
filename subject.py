@@ -36,7 +36,8 @@ class Subject:
         }
 
     @classmethod
-    try:
+    def from_dict(cls, data):
+        try:
             code = data.get("code")
             mark = data.get("mark")
             if code is None or mark is None:
