@@ -9,6 +9,8 @@ class Student:
     MAX_SUBJECTS = 4
 
     def __init__(self, name, email, password): 
+        if not isinstance(email, str):
+            raise ValueError("Email must be a string")
         self.id = f"{random.randint(1, 999999):06}"  
         self.name = name
         self.email = email.lower()
@@ -67,8 +69,13 @@ class Student:
     def calculate_average(self):
         if not self.subjects:
             return 0
-        return sum(subj.mark for subj in self.subjects) / len(self.subjects)
-
+        try:
+            total = sum(subj.mark for subj in self.subjects)
+            return total / len(self.subjects)
+        except Exception as e:
+            print("Exception occurred in calculating average:", e)
+            return 0
+            
     def has_passed(self):
         return self.calculate_average() >= 50 and len(self.subjects) == self.MAX_SUBJECTS
 
