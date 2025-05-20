@@ -46,12 +46,15 @@ def login_student():
         temp_student = Student("", email, password)
 
         valid_email = temp_student.is_valid_email()
-        valid_password = temp_student.is_valid_password()
+        password_errors = temp_student.validate_password()
+        valid_password = len(password_errors) == 0
 
         if not valid_email:
             print("Invalid email format. Must be firstname.lastname@university.com")
         if not valid_password:
-            print("Invalid password format.")
+            print("Invalid password format:")
+            for err in password_errors:
+                print(f"- {err}")
 
         if valid_email and valid_password:
             email = email.lower()
