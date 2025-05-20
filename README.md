@@ -1,6 +1,6 @@
 # Group 5 University System 
 
-A console-based university student management system developed in Python using Object-Oriented Programming (OOP). This system allows students to register, log in, enrol in subjects, view and remove subjects, and update their passwords. Admins can manage student records with options to group, partition, and clear data.
+This is a university student management system that supports both a command-line interface (CLI) and a graphical user interface (GUI). This project developed in Python and using Object-Oriented Programming (OOP). This system allows students to register, log in, enrol in subjects, view and remove subjects, and update their passwords. Admins can manage student records with options to group, partition, and clear data. This project also includes a graphical interface for the University Student System. It is composed of several modular GUI files, each responsible for a specific function within the application.
 
 # Features 
 
@@ -16,7 +16,7 @@ To ensure account security, passwords must meet several criteria. A valid passwo
 ### Email Format
 Student email addresses must follow the structure of a valid university domain format. Specifically, the email should be in the form of firstname.lastname@university.com, using only letters, periods, and hyphens before the "@" symbol. This ensures the identity and format are consistent across all student accounts.
 
-# How to run the project 
+# How to run the project (CLI Version)
 
 **1.Ensure Python 3 is Installed**
 
@@ -27,6 +27,8 @@ Make sure that Python 3.x is installed on your system.
 
 
 Obtain the project files by downloading the ZIP archive from the repository.
+
+
 
 **3.Verify Required Files Are Present**
 
@@ -68,9 +70,32 @@ Choosing Admin will provide access to database management tools.
 Choosing Student allows you to register, log in, manage subjects, and update your password.
 
 
-# How to run the project 
+# How to run the project (CLI Version)
+
+The GUI offers a more user-friendly version of the student functions.
 
 
+**1.Make sure you have all the required GUI files in the same directory:**
+
+GUI_main_app.py
+
+GUI_login_view.py
+
+GUI_view_subjects_view.py
+
+GUI_manage_subjects_view.py
+
+As well as supporting files like student.py, subject.py, database.py, and students.json.
+
+**2.Open your terminal and run:**
+
+
+python GUI_main_app.py
+
+
+**3.This will launch the GUI-based system** 
+
+Students can log in, view enrolled subjects, and manage their enrolments visually.
 
 
 # Group Members 
