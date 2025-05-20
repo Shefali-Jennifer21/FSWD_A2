@@ -2,7 +2,7 @@ import tkinter as tk
 from GUI_login_view import LoginWindow
 from GUI_view_subjects_view import ViewSubjectsWindow   
 from GUI_manage_subjects_view import ManageSubjectsWindow 
-import database # for student database
+import database
 
 class MainApp(tk.Tk):
     def __init__(self):
@@ -10,13 +10,12 @@ class MainApp(tk.Tk):
         self.title("GUIUniApp")
         self.geometry("400x300")
 
-        self.current_student = None # make variable for current_stu
-
-        self.show_login_window()    # Display login window as initial screen
+        self.current_student = None
+        
+        self.show_login_window()    
 
 
     def clear_all_widgets(self):
-        """All child widgets are removed """
         for widget in self.winfo_children():
             widget.destroy()
 
