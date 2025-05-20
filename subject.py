@@ -7,7 +7,11 @@ class Subject:
         self.grade = self.calculate_grade()
 
     def generate_code(self):
-        return f"{random.randint(1, 999):03}"
+        try:
+            return f"{random.randint(1, 999):03}" 
+        except Exception as e:
+            print(f"Error generating subject code: {e}")
+            return "000"
 
     def calculate_grade(self):
         if self.mark >= 85:
@@ -32,5 +36,12 @@ class Subject:
         }
 
     @classmethod
-    def from_dict(cls, data):
-        return cls(code=data["code"], mark=data["mark"])
+    try:
+            code = data.get("code")
+            mark = data.get("mark")
+            if code is None or mark is None:
+                raise ValueError("Missing required subject fields: 'code' and 'mark'")
+            return cls(code=code, mark=mark)
+        except Exception as e:
+            print(f"Error creating Subject from data: {e}")
+            return cls()
