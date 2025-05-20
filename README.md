@@ -93,7 +93,7 @@ As well as supporting files: student.py, subject.py, database.py, and students.j
 **2.Open your terminal and run:**
 
 
-python GUI_main_app.py
+GUI_main_app.py
 
 
 **3.This will launch the GUI-based system** 
