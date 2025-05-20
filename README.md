@@ -13,22 +13,21 @@ A console-based university student management system developed in Python using O
 
 Project Structure 
 
-main.py 
+main.py:
 Main control file (contains menu and logic)
 
-student.py 
+student.py:
 Contain Student class and related validations
 
-subject.py 
+subject.py: 
 Contain Subject class
 
-admin.py 
+admin.py:
 Contain Admin class with admin functions
 
-database.py 
+database.py:
 Handles reading and writing student data
 
-students.data 
+students.data: 
 Binary file to store student information
 
-README.md 
