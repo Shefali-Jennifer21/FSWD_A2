@@ -52,7 +52,7 @@ admin.py
 database.py
 
 
-students.data (optional, will be created if not found)
+students.json (optional, will be created if not found)
 
 
 **4.Run the Application**
