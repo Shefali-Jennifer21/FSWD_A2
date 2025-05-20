@@ -16,6 +16,14 @@ To ensure account security, passwords must meet several criteria. A valid passwo
 ### Email Format
 Student email addresses must follow the structure of a valid university domain format. Specifically, the email should be in the form of firstname.lastname@university.com, using only letters, periods, and hyphens before the "@" symbol. This ensures the identity and format are consistent across all student accounts.
 
+# How to run the project 
+
+1.Make sure you have Python 3 installed.
+
+2.Clone or download the project files.
+
+3.Run the following command from the terminal inside the project directory: main.py
+
 
 # Group Members 
 
