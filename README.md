@@ -68,6 +68,9 @@ Choosing Admin will provide access to database management tools.
 Choosing Student allows you to register, log in, manage subjects, and update your password.
 
 
+# How to run the project 
+
+
 
 
 # Group Members 
