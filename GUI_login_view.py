@@ -34,13 +34,11 @@ class LoginWindow:
             messagebox.showerror("Login Error", "Please enter both email and password.")
             return
 
-        # email form exception
         temp_student_for_validation = Student("t_name", email, "t_pw")
         if not temp_student_for_validation.is_valid_email():
              messagebox.showerror("Login Error", "Invalid email format.")
              return
 
-        # validation 
         student = database.get_student_by_email_password(email, password)
 
         if student:
