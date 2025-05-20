@@ -87,26 +87,26 @@ def student_course_menu(student):
             student.show_enrolled_subjects()
         elif choice == 'c':
             print("Updating Password")
-        while True:
-            new_password = input("New Password: ")
-            confirm_password = input("Confirm Password: ")
+            while True:
+                new_password = input("New Password: ")
+                confirm_password = input("Confirm Password: ")
 
-            if new_password != confirm_password:
-                print("Passwords do not match - try again")
-                continue
+                if new_password != confirm_password:
+                    print("Passwords do not match - try again")
+                    continue
 
-            temp_student = Student(student.name, student.email, new_password)
-            password_errors = temp_student.validate_password()
+                temp_student = Student(student.name, student.email, new_password)
+                password_errors = temp_student.validate_password()
 
-            if password_errors:
-                print("Invalid password format:")
-                for err in password_errors:
-                    print(f"- {err}")
-            else:
-                student.password = new_password
-                update_student_data(student)
-                print("Password updated successfully.")
-                break
+                if password_errors:
+                    print("Invalid password format:")
+                    for err in password_errors:
+                        print(f"- {err}")
+                else:
+                    student.password = new_password
+                    update_student_data(student)
+                    print("Password updated successfully.")
+                    break
 
 def student_menu():
     while True:
