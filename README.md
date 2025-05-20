@@ -1,6 +1,9 @@
 # Group 5 University System 
 
-This is a university student management system that supports both a command-line interface (CLI) and a graphical user interface (GUI). This project developed in Python and using Object-Oriented Programming (OOP). This system allows students to register, log in, enrol in subjects, view and remove subjects, and update their passwords. Admins can manage student records with options to group, partition, and clear data. This project also includes a graphical interface for the University Student System. It is composed of several modular GUI files, each responsible for a specific function within the application.
+This is a University Student Management System developed in Python using Object-Oriented Programming (OOP) principles. The system supports both a command-line interface (CLI) and a graphical user interface (GUI). It allows students to register, log in, enrol in subjects, view or remove enrolled subjects, and update their passwords. Admin users can manage student records, including grouping students by grades, partitioning pass/fail results, and clearing the database. 
+
+
+The project’s GUI component is composed of modular files, each handling a specific function, offering a user-friendly visual alternative to the CLI.
 
 # Features 
 
@@ -70,7 +73,7 @@ Choosing Admin will provide access to database management tools.
 Choosing Student allows you to register, log in, manage subjects, and update your password.
 
 
-# How to run the project (CLI Version)
+# How to run the project (GUI Version)
 
 The GUI offers a more user-friendly version of the student functions.
 
