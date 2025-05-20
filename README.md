@@ -88,7 +88,7 @@ GUI_view_subjects_view.py
 
 GUI_manage_subjects_view.py
 
-As well as supporting files like student.py, subject.py, database.py, and students.json.
+As well as supporting files: student.py, subject.py, database.py, and students.json.
 
 **2.Open your terminal and run:**
 
